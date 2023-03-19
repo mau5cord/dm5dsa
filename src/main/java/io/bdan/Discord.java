@@ -10,22 +10,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
-public class discord {
+public class Discord {
     private List<EmbedObject> embeds = new ArrayList<>();
     public void addEmbed(EmbedObject embed) {
         this.embeds.add(embed);
     }
 
-    public void execute(boolean testChannel) throws IOException {
-        String channel = "https://discord.com/api/webhooks/";
+    public void execute(boolean testChannel) throws IOException, InterruptedException {
+        String channel = "https://discord.com/api/webhooks/1085039495210090506/wTrht259tkZKo0kULWmiMY34sU-Biwnca-N4kMJbu5o4TYTF3Z1bz_cFtYoWsqAZnGcF";
+        String role = "<@&1087096128715104337>";
         if (testChannel == true) {
-            channel = "https://discord.com/api/webhooks/";
+            channel = "https://discord.com/api/webhooks/1087092143463604254/le_YRkJf9p8GzAftHQacNjMcpOavXh4G_BzSpr1Lmxjgv3yVhdW-5ZvDWRZ26FJiefrl";
+            role = "<@&1086615040716714054>";
         }
 
         System.out.println(java.time.LocalDateTime.now() + "  |  Sending to Discord...");
+        TimeUnit.MILLISECONDS.sleep(500); //To prevent rate limiting
         JSONObject json = new JSONObject();
-        json.put("content", "<@&1086615040716714054>");
+        json.put("content", role);
         List<JSONObject> embedObjects = new ArrayList<>();
 
         for (EmbedObject embed : this.embeds) {
@@ -49,7 +53,7 @@ public class discord {
         stream.close();
         connection.getInputStream().close();
         connection.disconnect();
-        System.out.println(java.time.LocalDateTime.now() + "  |  sent, done \n");
+        System.out.println(java.time.LocalDateTime.now() + "  |  sent, done...");
     }
     public static class EmbedObject {
         private String title;
