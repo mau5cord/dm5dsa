@@ -17,7 +17,12 @@ public class discord {
         this.embeds.add(embed);
     }
 
-    public void execute() throws IOException {
+    public void execute(boolean testChannel) throws IOException {
+        String channel = "https://discord.com/api/webhooks/";
+        if (testChannel == true) {
+            channel = "https://discord.com/api/webhooks/";
+        }
+
         System.out.println(java.time.LocalDateTime.now() + "  |  Sending to Discord...");
         JSONObject json = new JSONObject();
         json.put("content", "<@&1086615040716714054>");
@@ -32,7 +37,7 @@ public class discord {
             embedObjects.add(jsonEmbed);
         }
         json.put("embeds", embedObjects.toArray());
-        URL url = new URL("https://discord.com/api/webhooks/1085039495210090506/wTrht259tkZKo0kULWmiMY34sU-Biwnca-N4kMJbu5o4TYTF3Z1bz_cFtYoWsqAZnGcF");
+        URL url = new URL(channel);
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
         connection.addRequestProperty("Content-Type", "application/json");
         connection.addRequestProperty("User-Agent", "java");

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class scraper {
-    public static void scrape() {
+    public static void scrape(boolean testChannel) {
         System.out.println("\n" + java.time.LocalDateTime.now() + "  |  Scraping deadmau5.com/shows...\n");
         ArrayList <JSONObject> jsonList = new ArrayList<JSONObject>();
         try {
@@ -37,7 +37,7 @@ public class scraper {
                     System.out.println(java.time.LocalDateTime.now() + "  |  row #" + i + "  |  " + date + " | " + venue + " | " + location + " | " +  availability.toUpperCase() +  " | " + URL);
                 discord discord = new discord();
                 discord.addEmbed(new discord.EmbedObject().setTitle(location).setDescription(venue + " — " + date + "\\n\\n["+ availability.toUpperCase() + "]("+ URL +")"));
-                discord.execute();
+                discord.execute(testChannel);
                 TimeUnit.MILLISECONDS.sleep(250);
             }
             System.out.println(java.time.LocalDateTime.now() + "  |  Scraping complete...");
