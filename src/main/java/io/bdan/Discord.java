@@ -20,7 +20,7 @@ public class Discord {
 
     public void execute(boolean testChannel) throws IOException, InterruptedException {
         String channel = "https://discord.com/api/webhooks/";
-        String role = "<@&1087096128715104337>";
+        String role = ""; //kody said no ping role :(
         if (testChannel == true) {
             channel = "https://discord.com/api/webhooks/";
             role = "<@&1086615040716714054>";
