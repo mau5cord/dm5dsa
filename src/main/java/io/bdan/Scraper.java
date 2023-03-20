@@ -18,6 +18,8 @@ import java.util.Map;
 public class Scraper {
 
     public static void scrape(boolean testChannel) {
+        //This will inevitably break in the future...
+
         System.out.println("\n" + java.time.LocalDateTime.now() + "  |  scraping deadmau5.com/shows...");
         ArrayList <JSONObject> jsonList = new ArrayList<JSONObject>();
         try {
@@ -102,8 +104,23 @@ public class Scraper {
 
     private static void discordList(boolean testChannel, ArrayList<JSONObject> jsonList) throws IOException, InterruptedException {
         for (JSONObject obj : jsonList) {
-            Discord discord = new Discord();
-            discord.addEmbed(new Discord.EmbedObject().setTitle(obj.get("location").toString()).setDescription(obj.get("venue").toString() + " — " + obj.get("date").toString() + "\\n\\n["+ obj.get("availability").toString().toUpperCase() + "]("+ obj.get("URL").toString() +")"));
+          Discord discord = new Discord();
+
+          //It took me a FUCKING DAY to figure out why it responded with a 400 error...
+          //IT'S BECAUSE OF THIS "—" CHARACTER IN THE DESCRIPTION.
+          //it does NOT make any fucking sense.
+
+            String loc = obj.get("location").toString();
+            String ven = obj.get("venue").toString();
+            String dat = obj.get("date").toString();
+            String ava = obj.get("availability").toString().toUpperCase();
+            String url = obj.get("URL").toString();
+
+            String desc = ven + " - " + dat + "\\n\\n["+ ava + "]("+ url +")";
+
+            discord.addEmbed(new Discord.EmbedObject()
+                    .setTitle(loc)
+                    .setDescription(desc));
             discord.execute(testChannel);
         }
     }

@@ -19,10 +19,10 @@ public class Discord {
     }
 
     public void execute(boolean testChannel) throws IOException, InterruptedException {
-        String channel = "https://discord.com/api/webhooks/1085039495210090506/wTrht259tkZKo0kULWmiMY34sU-Biwnca-N4kMJbu5o4TYTF3Z1bz_cFtYoWsqAZnGcF";
+        String channel = "https://discord.com/api/webhooks/";
         String role = "<@&1087096128715104337>";
         if (testChannel == true) {
-            channel = "https://discord.com/api/webhooks/1087092143463604254/le_YRkJf9p8GzAftHQacNjMcpOavXh4G_BzSpr1Lmxjgv3yVhdW-5ZvDWRZ26FJiefrl";
+            channel = "https://discord.com/api/webhooks/";
             role = "<@&1086615040716714054>";
         }
 
