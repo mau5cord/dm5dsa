@@ -23,8 +23,8 @@ public class Main {
         //and no, I don't want to use crontab leave me alone (me rn -> https://data.bdan.io/img/angy.jpeg)
         while(loop){
             Scraper.scrape(testChannel);
-            System.out.println(java.time.LocalDateTime.now() + "  |  waiting 1 Minute...");
-            TimeUnit.MINUTES.sleep(1);
+            System.out.println(java.time.LocalDateTime.now() + "  |  waiting 5 minutes...");
+            TimeUnit.MINUTES.sleep(5);
         }
         Scraper.scrape(testChannel);
     }
