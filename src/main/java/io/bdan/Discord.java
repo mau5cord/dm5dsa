@@ -20,16 +20,16 @@ public class Discord {
 
     public void execute(boolean testChannel) throws IOException, InterruptedException {
         String channel = "https://discord.com/api/webhooks/";
-        String role = ""; //kody said no ping role :(
+        String text = ""; //kody said no ping role :(
         if (testChannel == true) {
             channel = "https://discord.com/api/webhooks/";
-            role = "<@&1086615040716714054>";
+            text = "running in test mode..." + java.time.LocalDateTime.now();
         }
 
         System.out.println(java.time.LocalDateTime.now() + "  |  Sending to Discord...");
         TimeUnit.MILLISECONDS.sleep(500); //To prevent rate limiting
         JSONObject json = new JSONObject();
-        json.put("content", role);
+        json.put("content", text);
         List<JSONObject> embedObjects = new ArrayList<>();
 
         for (EmbedObject embed : this.embeds) {
